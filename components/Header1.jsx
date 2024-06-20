@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Block from './Block'
+import Link from 'next/link'
 const Header1 = () => {
     return (
         <div className='flex h-24 justify-between border-b-2 border-gray-300 items-center px-10'>
@@ -27,7 +28,9 @@ const Header1 = () => {
                         height={200}
                         className=" w-10 h-10 rounded-full mr-5"
                     />
-                    <h3 className='font-bold'>Login / Signup</h3>
+                    <Link href={'/login'}>
+                        <h3 className='font-bold'>Login / Signup</h3>
+                    </Link>
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 
 import React from 'react'
 const Header3 = () => {
@@ -14,7 +15,11 @@ const Header3 = () => {
                     <input type="text" placeholder='Search...' className='col-span-2 h-16 outline-none px-3 text-lg border-r-2 border-gray-400' />
                     <input type="text" placeholder='Search...' className='col-span-1 h-16 outline-none px-3 text-lg border-r-2 border-gray-400' />
                     <input type="text" placeholder='Search...' className='col-span-1 h-16 outline-none px-3 text-lg border-r-2 border-gray-400' />
-                    <button type="submit" className='h-16 px-3 py-2 col-span-1 bg-green-400 hover:cursor-pointer hover:bg-green-600 text-white text-xl mr-5'>Search</button>
+                    <button type="submit" className='h-16 px-3 py-2 col-span-1 bg-green-400 hover:cursor-pointer hover:bg-green-600 text-white text-xl mr-5'>
+                        <Link href={'/hotels'}>
+                            Search
+                        </Link>
+                    </button>
 
                 </div>
 
