@@ -1,39 +1,77 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-const Hotel = () => {
-    return (
-        <div className='border-2 border-red-500  rounded-lg h-72 w-full mb-5 p-5'>
-            <div className="flex">
-                <Image src={'https://publish.purewow.net/wp-content/uploads/sites/2/2019/08/agama.jpg?fit=728%2C524'} alt='image' width={200} height={200} className='h-60 w-96 mr-3' />
+import Image from "next/image";
+import Link from "next/link";
 
-                <div className="grid grid-rows-3 gap-2">
-                    <Image src={'https://publish.purewow.net/wp-content/uploads/sites/2/2019/08/agama.jpg?fit=728%2C524'} alt='image' width={200} height={200} className=' w-24 mr-3' />
-                    <Image src={'https://publish.purewow.net/wp-content/uploads/sites/2/2019/08/agama.jpg?fit=728%2C524'} alt='image' width={200} height={200} className=' w-24 mr-3' />
-                    <Image src={'https://publish.purewow.net/wp-content/uploads/sites/2/2019/08/agama.jpg?fit=728%2C524'} alt='image' width={200} height={200} className=' w-24 mr-3' />
-                </div>
-
-                <div className='ml-20' >
-                    <h2 className='font-bold text-2xl line-clamp-1'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, dignissimos?
-                    </h2>
-                    <p className='text-justify my-5 text-lg'>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem in veritatis obcaecati at! Optio deserunt, id quod dicta fugiat possimus veniam eveniet praesentium reprehenderit eius illum neque delectus, iusto repellendus?
-                    </p>
-                    <p className='text-2xl my-5 '>
-                        <span className="font-bold">Facilities : </span>
-                        <span>Free Wifi, Pet Care, Swimming Pool, Beaches, Resort</span>
-                    </p>
-
-                    <div className='flex items-center'>
-                        <button className='w-60 h-14 rounded-lg bg-blue-400 text-lg'> Price: 4500</button>
-                        <Link href={'hotels/2'} className='text-xl font-bold text-red-600 ml-10'>See Details</Link>
-                    </div>
-
-                </div>
-            </div>
+const Hotel = ({ e }) => {
+  return (
+    <div className=" border-2 border-red-500 rounded-lg h-96 w-full mb-5 p-5">
+      <div className="flex">
+        <Image
+          src={e?.banner}
+          alt="hotel"
+          width={200}
+          height={200}
+          className=" w-96 h-60 mr-3"
+        />
+        <div className="flex flex-col justify-between">
+          {e
+            ? e.gallery?.map((ele) => {
+                return (
+                  <Image
+                    key={ele}
+                    src={ele}
+                    alt="hotel"
+                    width={200}
+                    height={200}
+                    className=" w-28 h-16 object-cover  "
+                  />
+                );
+              })
+            : ""}
         </div>
-    )
-}
+        <div className=" ml-20">
+          <h2 className="font-bold text-3xl line-clamp-1">{e?.name}</h2>
+          <p className=" text-justify my-5 text-lg">{e?.description}</p>
+          <div className=" text-2xl my-5">
+            <span className=" font-bold">Facilities : </span>
+            <ul className=" flex">
+              {e
+                ? e.facilities?.map((ele) => {
+                    return (
+                      <li
+                        key={ele.name}
+                        className=" mr-10 mb-3 flex items-center"
+                      >
+                        <span>
+                          <Image
+                            src={ele.img}
+                            alt="hotel"
+                            width={200}
+                            height={200}
+                            className="w-8 h-8 rounded-full"
+                          />
+                        </span>
+                        <span className="ml-5">{ele.name}</span>
+                      </li>
+                    );
+                  })
+                : ""}
+            </ul>
+          </div>
+          <div className=" flex items-center">
+            <button className=" w-60 h-14 rounded-lg bg-blue-400 text-lg">
+              Price : &#8377; {e?.price}
+            </button>
+            <Link
+              href={`/hotels/${e?._id}`}
+              className="text-xl font-bold text-red-600 ml-10"
+            >
+              See Details
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Hotel
+export default Hotel;
